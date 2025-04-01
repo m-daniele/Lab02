@@ -14,7 +14,7 @@ class Dictionary:
     def translate(self, alien_word):
         return self.alien_dict.get(alien_word, None)
 
-    def translateWordWildCard(self):
+    def translateWordWildCard(self, query):
         pass
 
     def printAllWords(self):

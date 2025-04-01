@@ -23,10 +23,15 @@ while(True):
             t.handleTranslate(query)
 
         elif choice == 3:
+            print("\nCerca con wildcard (inserisci la parola aliena)")
+            query = input()
+            t.handleWildCard(query)
+
+        elif choice == 4:
             print("\nDizionario completo:\n")
             t.dictionary.printAllWords()
 
-        elif int(txtIn) == 4:
+        elif int(txtIn) == 5:
             print("Grazie e arrivederci!")
             break
         else:

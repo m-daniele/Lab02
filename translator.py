@@ -16,8 +16,9 @@ class Translator:
         print("------------------")
         print("1. Aggiungi nuova parola")
         print("2. Cerca una traduzione")
-        print("3. Stampa tutto il dizionario")
-        print("4. Exit")
+        print("3. Cerca con wildcard")
+        print("4. Stampa tutto il dizionario")
+        print("5. Exit")
         print("------------------")
         print()
 
@@ -85,5 +86,23 @@ class Translator:
 
     def handleWildCard(self,query):
         # query is a string with a ? --> <par?la_aliena>
-        pass
+        query = query.strip().lower()
+        # verifica che siano solo lettere
+        if query.count("?") > 1:
+            print("Formato non valido. Usa solo un '?' per wildcard.")
+            return False
+        # verifica che siano solo lettere
+        if not query.replace("?", "").isalpha():
+            print("Formato non valido. Usa solo lettere.")
+            return False
 
+        # cerca la traduzione
+        matches = self.dictionary.translateWordWildCard(query)
+        if matches:
+            print(f"Traduzioni per: '{query}' -> ")
+            for word, translations in matches.items():
+                translations_str = ', '.join(translations)
+                print(f"{word} -> {translations_str}")
+        else:
+            print(f"Parola '{query}' non trovata nel dizionario.")
+            return False
