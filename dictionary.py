@@ -14,8 +14,26 @@ class Dictionary:
     def translate(self, alien_word):
         return self.alien_dict.get(alien_word, None)
 
-    def translateWordWildCard(self, query):
-        pass
+    def translateWordWildCard(self, query_with_wildcard):
+        # Gestiamo la ricerca con wildcard
+        matches = {}
+
+        # Troviamo la posizione del carattere wildcard
+        wildcard_pos = query_with_wildcard.find('?')
+
+        # Creiamo due parti della stringa: parte prima e dopo del wildcard
+        prefix = query_with_wildcard[:wildcard_pos]
+        suffix = query_with_wildcard[wildcard_pos + 1:]
+
+        # Controlliamo tutte le parole nel dizionario
+        for word in self.alien_dict:
+            # Verifichiamo che la lunghezza sia uguale
+            if len(word) == len(query_with_wildcard):
+                # Verifichiamo che il prefisso e il suffisso corrispondano
+                if (word.startswith(prefix) and word.endswith(suffix) and
+                        len(prefix) + len(suffix) + 1 == len(word)):
+                    matches[word] = self.alien_dict[word]
+        return matches
 
     def printAllWords(self):
         if not self.alien_dict:

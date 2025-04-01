@@ -99,7 +99,7 @@ class Translator:
         # cerca la traduzione
         matches = self.dictionary.translateWordWildCard(query)
         if matches:
-            print(f"Traduzioni per: '{query}' -> ")
+            print(f"Traduzioni wildcard per '{query}' : ")
             for word, translations in matches.items():
                 translations_str = ', '.join(translations)
                 print(f"{word} -> {translations_str}")
